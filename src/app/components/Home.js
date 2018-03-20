@@ -22,7 +22,7 @@ export default class Home extends React.Component {
         this.forceUpdate();
     }
 
-    decrement() {
+    decrement = () => {
         //console.trace();
         //keyword setState
         //GOOD
@@ -52,13 +52,10 @@ export default class Home extends React.Component {
                   +1
                 </button>
 
-                <div onClick={ () => this.decrement() }>
-                <div onClick={ () => this.decrement() }>
-                    <button onClick={ () => this.decrement() }>
-                    -1
-                    </button>
-                </div>
-                </div>
+                    <button onClick={this.decrement }>
+                -1
+                </button>
+            
 
  
             

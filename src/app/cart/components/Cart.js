@@ -18,6 +18,25 @@ export default class Cart extends Component {
 
             flag: true
         }
+
+        //ES5 way to bind object with function
+        //this.removeItem = this.removeItem.bind(this);
+    }
+
+    // derived data
+    recalculate(items) {
+        let amount = 0, 
+            count = 0;
+
+        for(let item of  items) {
+            amount += item.qty * item.price;
+            count  += item.qty; 
+        }
+
+        this.setState({
+            amount, //ES6 sugar amount: amount
+            count
+        })
     }
 
     addItem() {
@@ -29,22 +48,51 @@ export default class Cart extends Component {
             qty: 1
         }
 
+        // immutablity for array
         //TODO
+        let newItems = [...this.state.items, item];
+
+        this.setState({
+            items: newItems
+        }, () => {
+            console.log("Add item setstate callback");
+             
+            
+        })
+ 
+
+       this.recalculate(newItems);
     }
 
-    removeItem(id) {
+    //ES Next 
+    removeItem = (id) => {
 
-        //TODO
+        console.log("removeItem", id);
+
+        let newItems = this.state
+                        .items.filter ( item => item.id != id);
+        this.setState({
+            items: newItems
+        })
+
+        this.recalculate(newItems);
     }
 
-    updateItem(id, qty) {
+    // es.next 
+    updateItem = (id, qty) => {
 
+        console.log("cart updateItem,", id, qty);
         //TODO
     }
 
     empty() {
 
         //TODO
+        this.setState ({
+            items: []
+        })
+
+        this.recalculate([]);
     }
 
     //dummy
@@ -52,6 +100,12 @@ export default class Cart extends Component {
         this.setState({
             flag: this.state.flag
         })
+    }
+
+
+    componentWillMount() {
+        console.log("Cart will mount");
+        this.recalculate(this.state.items);
     }
     
     
@@ -74,7 +128,11 @@ export default class Cart extends Component {
               Refresh
             </button>
 
-            <CartList items={this.state.items} />
+            <CartList items={this.state.items}
+                      onRemove={this.removeItem}
+                      onUpdate = {this.updateItem}
+
+            />
 
             <CartSummary amount={this.state.amount} 
                          count={this.state.count}
