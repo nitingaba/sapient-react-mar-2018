@@ -79,10 +79,39 @@ export default class Cart extends Component {
     }
 
     // es.next 
-    updateItem = (id, qty) => {
+    updateItem = (id, qty ) => {
+
+       qty = parseInt(qty);
 
         console.log("cart updateItem,", id, qty);
-        //TODO
+
+        // Step 1: immutable list
+        let newItems = this.state.items
+            .map ( item => {
+                if (item.id != id) {
+                    return item;
+                }
+
+                //Item to be updated
+                //BAD, mutating object
+                //item.qty = qty;
+
+                //Good, immutable
+                //Es6 assgin
+                //let newItem = Object.assign({}, item, {qty});
+               // return newItem;
+
+               //es.next, spread for object {...}
+               return {...item, qty: qty}
+
+            });
+        
+        this.setState({
+            items: newItems
+        });
+
+
+        this.recalculate(newItems);
     }
 
     empty() {
