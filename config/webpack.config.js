@@ -14,7 +14,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 
 // //Useful for extracting import "mystyle.css" used within js code
 // //used along with css-loaders
-// var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 
 var config = {
@@ -39,18 +39,23 @@ var config = {
       },
 
 
-    //   { test: /\.css$/, 
-    //     use: ExtractTextPlugin.extract({
-		// 		fallback: "style-loader",
-		// 		use: {
-		// 			loader: "css-loader",
-		// 			options: {
-		// 				sourceMap: true
-		// 			}
-		// 		},
-		// 		publicPath: "../"
-    //   }) 
-    //  }
+      { test: /\.css$/, 
+        use: ExtractTextPlugin.extract({
+				fallback: "style-loader",
+				use: {
+					loader: "css-loader",
+					// options: {
+          //   sourceMap: true,
+          //   modules: true
+          // },
+          query: {
+            modules: true,
+            localIdentName: '[name]__[local]___[hash:base64:5]'
+          }
+				},
+				publicPath: "../"
+      }) 
+     }
 
 
     
@@ -79,12 +84,12 @@ var config = {
 
 
 
-  //  //create css file from import "mystyle.css" statements
-  //  new ExtractTextPlugin({
-  //   filename: "[name].css",
-  //   disable: false,
-  //   allChunks: true
-  // }),
+   //create css file from import "mystyle.css" statements
+   new ExtractTextPlugin({
+    filename: "[name].css",
+    disable: false,
+    allChunks: true
+  }),
 
     
     new webpack.optimize.CommonsChunkPlugin({

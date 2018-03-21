@@ -16,7 +16,10 @@ export default class Header extends Component {
 
         return (
             <div>
-                <h2>{appTitle}</h2>
+                {/* <h2>{appTitle}</h2> */}
+
+                {this.props.children}
+                
                 <hr />
             </div>
         )

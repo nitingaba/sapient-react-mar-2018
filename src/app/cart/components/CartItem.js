@@ -11,6 +11,13 @@ export default class CartItem extends Component {
         }
     }
 
+    //keyword
+    //ES next
+    static contextTypes = {
+        discount: PropTypes.string,
+        theme: PropTypes.string
+    }
+
     componentWillReceiveProps(nextProps) {
         this.setState({
             qty: nextProps.item.qty
@@ -31,23 +38,36 @@ export default class CartItem extends Component {
         })
 
     }
+
+    componentDidMount() {
+        // all refs are resolved
+        this.inputElem.focus();
+
+        this.refs.discount.textContent = this.context.discount;
+    }
      
     render() {
         console.log("CartItem render", this.props.item.id);
         
+        console.log("Context ", this.context.discount, 
+                                this.context.theme);
+
         let {item} = this.props;
 
          
         return (
             <tr>
                 <td>{item.name}</td>
-                <td>{item.price}</td>
+                <td>
+                   {item.price}
+                   <p ref="discount"> </p>
+                </td>
                 <td>
                    <input value={this.state.qty} 
                           type="number"
                           onChange={this.onChangeText}
                           onBlur={ () => this.props.onUpdate(item.id, this.state.qty)  }
-                   
+                          ref = { (elem) => this.inputElem = elem  }
                    />   
                 </td>
                 <td> {item.price * item.qty} </td>
