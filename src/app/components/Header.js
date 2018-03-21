@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import {NavLink} from "react-router-dom";
+
 //React.Component == Component
 
 export default class Header extends Component {
@@ -19,7 +21,23 @@ export default class Header extends Component {
                 {/* <h2>{appTitle}</h2> */}
 
                 {this.props.children}
+
+                <NavLink to="/" exact className="button" activeClassName="success"  >
+                    Home
+                </NavLink>
+
+                <NavLink to="/products" className="button"  activeClassName="success" >
+                    Products
+                </NavLink>
                 
+                <NavLink to="/cart" className="button"  activeClassName="success" >
+                    Cart
+                </NavLink>
+
+                <NavLink to="/about"  className="button" activeClassName="success"  >
+                    About
+                </NavLink>
+
                 <hr />
             </div>
         )

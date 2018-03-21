@@ -5,7 +5,18 @@ import PropTypes from "prop-types";
 //default export
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-  
+import Home from "./components/Home";
+
+import About from "./components/About";
+import NotFound from "./components/NotFound";
+
+import Cart from "./cart/components/Cart";
+
+import {BrowserRouter as Router, 
+        Route, 
+        Switch, 
+        Redirect } from 'react-router-dom';
+
 export class App extends React.Component {
     constructor() {
         super();
@@ -32,16 +43,19 @@ export class App extends React.Component {
         console.log("App render");
         // JSX
         return (
+            <Router>
             <div>
                
                 <Header appTitle="React App" > 
                    <h1>React App 2</h1>
                 </Header>
 
-
-                {/* view place holder */}
-
-                {this.props.children}
+                <Switch>
+                    <Route path="/" exact  component={Home} />
+                    <Route path="/cart" component={Cart} />
+                    <Route path="/about" component={About} />
+                    <Route path="*" component={NotFound} />
+                </Switch>
                 
 
                 <Footer  
@@ -49,7 +63,8 @@ export class App extends React.Component {
                     <p>contact time: 8:00 - 5:00 pm</p>
                     <p> US Time 9:00 - 4:00 pm </p>
                 </Footer>
-            </div> 
+            </div>
+            </Router>
         )
     }
 }
