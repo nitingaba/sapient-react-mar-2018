@@ -34,6 +34,11 @@ export default class Header extends Component {
                     Cart
                 </NavLink>
 
+
+                <NavLink to="/counter" className="button"  activeClassName="success" >
+                    Counter
+                </NavLink>
+
                 <NavLink to="/about"  className="button" activeClassName="success"  >
                     About
                 </NavLink>

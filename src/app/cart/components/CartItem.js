@@ -2,6 +2,9 @@
 import React, {Component} from "react";
 import PropTypes from "prop-types";
 
+var ReactCSSTransitionGroup = require('react-addons-css-transition-group'); // 
+
+
 export default class CartItem extends Component {
     constructor(props) {
         super(props);
@@ -56,6 +59,14 @@ export default class CartItem extends Component {
 
          
         return (
+            <ReactCSSTransitionGroup
+            transitionName="example"
+            transitionAppear={true}
+            transitionAppearTimeout={5000}
+            transitionLeaveTimeout={5000}
+             
+            transitionEnter={false}
+            transitionLeave={false}>
             <tr>
                 <td>{item.name}</td>
                 <td>
@@ -77,6 +88,7 @@ export default class CartItem extends Component {
                     </button>
                 </td>
             </tr>
+            </ReactCSSTransitionGroup>
         )
     }
 } 

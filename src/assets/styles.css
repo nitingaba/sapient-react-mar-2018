@@ -3013,3 +3013,15 @@ select.stack {
   margin-right: -6px;
   right: 100%;
   top: 7px; }
+
+
+
+
+  .example-appear {
+    opacity: 0.01;
+  }
+  
+  .example-appear.example-appear-active {
+    opacity: 1;
+    transition: opacity .5s ease-in;
+  }
