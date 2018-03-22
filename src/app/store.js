@@ -4,6 +4,7 @@ import cartReducer from "./redux-cart/state/cartReducer";
 import productReducer from "./product/state/productReducer";
 
 import loggerMiddleware from "./loggerMiddleware";
+import thunk from "redux-thunk";
 
 //reducers are called by store
 const INITIAL_STATE = 0;
@@ -36,7 +37,7 @@ let rootReducer = combineReducers({
 })
 
 let store = createStore(rootReducer, 
-                        applyMiddleware(loggerMiddleware));
+                        applyMiddleware(loggerMiddleware, thunk));
 
 export default store;
 

@@ -9,7 +9,7 @@ function ProductItem(props) {
             <li key={product.id}>
             <div>
                 <span>{product.name}</span>
-                <button onClick={ () => addItemToCart(product.id) }>
+                <button onClick={ () => addItemToCart(product) }>
                 +Cart
                 </button>  
             </div>
@@ -23,28 +23,39 @@ export default class ProductList extends Component {
     }
     
     componentDidMount() {
-        
+        // dispatch function as a action
+        this.props.actions.getProductsFromServer();
     }
     
     render() {
-        let {products} = this.props;
+        let {products, loading} = this.props;
         //TODO: loading, error
+
+
 
         return (
             <div> 
             <h2>Product List</h2>
 
-            <ul>
-                {
-                    products.map (product => (
-                        <ProductItem key={product.id}
-                                     product={product}
-                                     addItemToCart = {this.props.addItemToCart}
+            {
+                loading &&
+                  <img src="/assets/loading.gif" />
+            }
 
-                        />
-                    ))
-                }   
-            </ul>
+            { !loading && 
+                <ul>
+                    {
+                        products.map (product => (
+                            <ProductItem key={product.id}
+                                        product={product}
+                                        addItemToCart = {this.props.addItemToCart}
+
+                            />
+                        ))
+                    }   
+                </ul>
+            }
+
             </div>
         )
     }

@@ -10,6 +10,11 @@ export default function loggerMiddleware(store) {
         return function (action) {
             console.log("LOGGER ", action, typeof action);
 
+            // this is done by thunk
+            // if (typeof action == 'function') {
+            //     return action(store.dispatch, store.getState);
+            // }
+
             let result;
 
             // next: forward action to next middleware or

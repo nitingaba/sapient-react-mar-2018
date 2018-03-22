@@ -25,6 +25,15 @@ const mapDispatchToProps = (dispatch) => {
 
         addItemToCart: function(product) {
             //TODO
+            let item = {
+                id: product.id,
+                name: product.name,
+                price: product.price,
+                qty: 1
+            }
+
+            dispatch(cartActions.addItem(item));
+
         }
     }
 }
