@@ -9,6 +9,7 @@ import NotFound from "./components/NotFound";
 import Cart from "./cart/components/Cart";
 
 import ReduxCart from "./redux-cart/containers/Cart";
+import ProductList from "./product/containers/ProductList";
 
 import Counter from "./containers/CounterContainer";
 
@@ -29,6 +30,7 @@ export default function Routes(props) {
                     <Route path="/" exact  component={Home} />
                     <Route path="/cart" component={Cart} />
                     <Route path="/about" component={About} />
+                    <Route path="/products" component={ProductList} />
                     <Route path="/counter" component={Counter} />
                     <Route path="/redux-cart" component={ReduxCart} />
                     <Route path="*" component={NotFound} />

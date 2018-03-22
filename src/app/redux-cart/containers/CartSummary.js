@@ -1,6 +1,7 @@
 
 import {connect} from "react-redux";
- 
+//import { createSelector } from 'reselect'
+
 import CartSummary from "../components/CartSummary";
 
 //Good reselect package
@@ -22,8 +23,15 @@ function recalculate(items) {
     }
 }
 
+// reselect
+
+// const itemsFilter = (state) => state.items
+// const recalculateSelector = createSelector([itemsFilter],
+//                                       (items ) => recalculate(items))
+
 const mapStateToProps = (state) => {
     let result = recalculate(state.items);
+    //let result = recalculateSelector(state);
 
     // old style
     return {
