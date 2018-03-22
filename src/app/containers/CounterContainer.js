@@ -1,8 +1,11 @@
 import {connect} from 'react-redux';
 
+import {bindActionCreators} from "redux";
+
 import Counter from "../components/Counter";
 
 import * as actions from "../actions";
+
 
 
 
@@ -27,11 +30,19 @@ function mapDispatchToProps (dispatch) {
     console.log("Counter container  mapDispatchToProps");
 
     return {
-        increment: function() {
-            console.log("DISPATCH INCREMENT");
-            let action = actions.increment(1);
-            dispatch(action);
-        },
+        // bindActionCreators returns a new function
+        // that bind actions.increment and dispatch
+        // together 
+        increment: bindActionCreators(actions.increment,
+                                      dispatch),
+
+
+        // increment: function() {
+        //     console.log("DISPATCH INCREMENT");
+
+        //     let action = actions.increment(1);
+        //     dispatch(action);
+        // },
 
         decrement: function() {
             let action = actions.decrement(1);
@@ -41,12 +52,15 @@ function mapDispatchToProps (dispatch) {
 }
 
 
-let connectFn = connect(mapStateToProps,
-                        mapDispatchToProps);
+// let connectFn = connect(mapStateToProps,
+//                         mapDispatchToProps);
 
 
 // store is exposed as context variable from Provider
-// Provider is main.js
-let CounterContainerComponent = connectFn(Counter);
+// // Provider is main.js
+// let CounterContainerComponent = connectFn(Counter);
 
-export default CounterContainerComponent;
+// export default CounterContainerComponent;
+
+export default connect(mapStateToProps,
+                       mapDispatchToProps) (Counter);

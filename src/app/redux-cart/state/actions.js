@@ -26,7 +26,7 @@ export const updateItem = (id, qty) => {
         type: ActionTypes.UPDATE_ITEM_IN_CART,
         payload: {
             id,
-            qty
+            qty: parseInt(qty)
         }
     }
 }

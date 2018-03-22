@@ -3,6 +3,8 @@
 // all actions creators defined in actions.js
 
 export function increment(value) {
+    console.log("Increment Value action ", value);
+
     return {
         type: 'INCREMENT',
         payload: {
@@ -12,6 +14,8 @@ export function increment(value) {
 }
 
 export function decrement(value) {
+    console.log("Decrement Value action ", value);
+    
     return {
         type: 'DECREMENT',
         payload: {

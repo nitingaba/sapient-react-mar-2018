@@ -35,6 +35,12 @@ export default class Header extends Component {
                 </NavLink>
 
 
+                <NavLink to="/redux-cart" className="button"  activeClassName="success" >
+                   Redux Cart
+                </NavLink>
+
+
+
                 <NavLink to="/counter" className="button"  activeClassName="success" >
                     Counter
                 </NavLink>

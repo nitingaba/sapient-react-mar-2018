@@ -12,7 +12,7 @@ export default function Counter(props) {
             <h2>Counter</h2>
             <p> Counter {props.counter} </p>
 
-            <button onClick={props.increment}>
+            <button onClick={() => props.increment(1)}>
              +1
             </button>
 

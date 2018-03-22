@@ -1,5 +1,8 @@
 import {createStore, combineReducers} from 'redux';
 
+import cartReducer from "./redux-cart/state/cartReducer";
+
+
 //reducers are called by store
 const INITIAL_STATE = 0;
 function counterReducer(state = INITIAL_STATE,
@@ -25,7 +28,7 @@ function counterReducer(state = INITIAL_STATE,
 let rootReducer = combineReducers({
     // stateName: reducerFn
     counter: counterReducer,
-    //cartItems: cartReducer
+    items: cartReducer
 })
 
 let store = createStore(rootReducer);
