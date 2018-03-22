@@ -1,8 +1,7 @@
 // state
 import React from "react";
 
-var ReactCSSTransitionGroup = require('react-addons-css-transition-group'); // 
-
+ 
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -52,10 +51,7 @@ export default class Home extends React.Component {
      
         return (
             <div>
-                <ReactCSSTransitionGroup
-                    transitionName="example"
-                    transitionEnterTimeout={500}
-                    transitionLeaveTimeout={300}>
+                
                 <h2>Home</h2>
                 <p> Counter: {this.state.counter} </p>
 
@@ -67,7 +63,6 @@ export default class Home extends React.Component {
                 -1
                 </button>
             
-            </ReactCSSTransitionGroup>
             </div>
         )
     }
