@@ -1,8 +1,6 @@
 // state
 import React from "react";
 
- 
-
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
@@ -59,7 +57,7 @@ export default class Home extends React.Component {
                   +1
                 </button>
 
-                    <button onClick={this.decrement }>
+                <button onClick={this.decrement }>
                 -1
                 </button>
             
